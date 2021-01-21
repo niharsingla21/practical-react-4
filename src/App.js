@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./App.css";
+import Counter from "./components/Counter";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  state = {
+    visible: true,
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <div className={this.state.visible ? "visible" : "hidden"}>
+          <Counter initialCount={0} />
+        </div>
+
+        {/* <div style={this.state.visible ? {} : { display: "none" }}>
+          <Counter initialCount={0} />
+        </div> */}
+        <button
+          onClick={() =>
+            this.setState({
+              visible: !this.state.visible,
+            })
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Toggle Counter
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
